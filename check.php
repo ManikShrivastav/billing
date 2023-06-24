@@ -10,34 +10,36 @@
 	$database_password = "";
 	$database_name = "billing";
 
+	$username = $_POST['username'];
+
 	//Connection Creation
 
-	$conn = new mysqli($servername, $database_username, $database_password,database_name);
+	$conn = new mysqli($servername, $database_username, $database_password,$database_name);
 
 		if ($conn->connect_error) {
 			
 			die("Connection Failed:". $conn->connect_error);
 		}
 
-		$sql = "SELECT password FROM `admin` where `admin`.`username` = ""+$username+"";"
+		$sql = "SELECT password FROM `admin` where `admin`.`username` = \"". $username . "\";";
 
-		$verified_password = $conn->query($sql);
+		$row = mysqli_fetch_array($conn->query($sql));
+		$verified_password = $row[0];
+
+
 
 		$entered_password = $_POST['password'];
 
 		$hash = password_hash($entered_password, PASSWORD_DEFAULT);
 
-
 			if (password_verify($verified_password, $hash)) {
-				echo '<script type="text/javascript"> alert("You have successfully logged in! ");
-						</script>';
+				header('Location: dashboard.php');
 			}
 
-			else {
-				echo'<script type="text/javascript"> alert("You have entered wrong passsword or username ! ");
-					</script>
-					';
+			else{
+				header('Location: index.php');
 			}
+			
 
  ?>
 </body>

@@ -50,7 +50,7 @@ td{
 }
 
 .cancel-button:hover{
-	background: #cf1020;
+	background: orangered;
 }
 
 .login-button:hover{
@@ -62,4 +62,7 @@ td{
 	border: 0px;
 }
 
+body{
+	overflow: hidden;
+}
 
