@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION['loggedIn'])) {
+  header('Location: auth-login.html');
+  exit;
+}
+?>
+<?php
+header("refresh: 60");
+?>
+
 <!DOCTYPE html>
 
 <html lang=en xmlns=http://www.w3.org/1999/xhtml>
@@ -8,15 +19,10 @@
 </head>
 <body>
     
-
-
           <h1 class=heading> Artha Vidhi</h1>
         <h4 class=sub-heading> A product of Haitomns Groups</h4>
 
-               
-
-
-
+          
         <div class=box> 
             <div class=login-heading>
                 <h2 class=login-heading-text> Login </h2>
